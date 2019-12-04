@@ -25,10 +25,10 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         public static IServiceCollection AddEventHandler<TEvent, THandler>(this IServiceCollection services)
-            where THandler : class, IEventDispatchHandler<TEvent>
             where TEvent : IEvent
+            where THandler : class, IEventDispatcherHandler
         {
-            services.AddTransient<IEventDispatchHandler<TEvent>, THandler>();
+            services.AddTransient<IEventDispatcherHandler, THandler>();
             return services;
         }
     }
